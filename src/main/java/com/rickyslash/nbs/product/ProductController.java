@@ -1,36 +1,48 @@
 package com.rickyslash.nbs.product;
 
-import org.springframework.http.HttpStatus;
+import com.rickyslash.nbs.product.services.CreateProductSvc;
+import com.rickyslash.nbs.product.services.DeleteProductSvc;
+import com.rickyslash.nbs.product.services.GetProductSvc;
+import com.rickyslash.nbs.product.services.UpdateProductSvc;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class ProductController {
+  private final CreateProductSvc createProductSvc;
+  private final GetProductSvc getProductSvc;
+  private final UpdateProductSvc updateProductSvc;
+  private final DeleteProductSvc deleteProductSvc;
+
+  public ProductController(
+      CreateProductSvc createProductSvc,
+      GetProductSvc getProductSvc,
+      UpdateProductSvc updateProductSvc,
+      DeleteProductSvc deleteProductSvc
+  ) {
+    this.createProductSvc = createProductSvc;
+    this.getProductSvc = getProductSvc;
+    this.updateProductSvc = updateProductSvc;
+    this.deleteProductSvc = deleteProductSvc;
+  }
+
   @PostMapping
   public ResponseEntity<String> createProduct() {
-    return ResponseEntity
-        .status(HttpStatus.CREATED)
-        .body("Product created");
+    return createProductSvc.execute();
   }
 
   @GetMapping
   public ResponseEntity<String> getProduct() {
-    return ResponseEntity
-        .status(HttpStatus.OK)
-        .body("Got product");
+    return getProductSvc.execute();
   }
 
   @PutMapping
   public ResponseEntity<String> updateProduct() {
-    return ResponseEntity
-        .status(HttpStatus.OK)
-        .body("Product updated");
+    return updateProductSvc.execute();
   }
 
   @DeleteMapping
   public ResponseEntity<String> deleteProduct() {
-    return ResponseEntity
-        .status(HttpStatus.NO_CONTENT)
-        .body("Product deleted");
+    return deleteProductSvc.execute();
   }
 }
