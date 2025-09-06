@@ -1,6 +1,7 @@
 package com.rickyslash.nbs.product.services;
 
 import com.rickyslash.nbs.common.contract.Command;
+import com.rickyslash.nbs.common.exceptions.ProductNotFoundException;
 import com.rickyslash.nbs.product.ProductRepository;
 import com.rickyslash.nbs.product.model.Product;
 import org.springframework.http.HttpStatus;
@@ -26,6 +27,6 @@ public class DeleteProductSvc implements Command<Integer, Void> {
       return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-    return null;
+    throw new ProductNotFoundException();
   }
 }

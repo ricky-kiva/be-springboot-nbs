@@ -1,6 +1,7 @@
 package com.rickyslash.nbs.product.services;
 
 import com.rickyslash.nbs.common.contract.Command;
+import com.rickyslash.nbs.common.exceptions.ProductNotFoundException;
 import com.rickyslash.nbs.product.ProductRepository;
 import com.rickyslash.nbs.product.model.Product;
 import com.rickyslash.nbs.product.model.ProductDTO;
@@ -32,6 +33,6 @@ public class UpdateProductSvc implements Command<UpdateProductCmd, ProductDTO> {
       return ResponseEntity.ok(new ProductDTO(product));
     }
 
-    return null;
+    throw new ProductNotFoundException();
   }
 }

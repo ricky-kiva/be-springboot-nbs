@@ -1,6 +1,7 @@
 package com.rickyslash.nbs.product.services;
 
 import com.rickyslash.nbs.common.contract.Query;
+import com.rickyslash.nbs.common.exceptions.ProductNotFoundException;
 import com.rickyslash.nbs.product.ProductRepository;
 import com.rickyslash.nbs.product.model.Product;
 import com.rickyslash.nbs.product.model.ProductDTO;
@@ -25,6 +26,6 @@ public class GetProductSvc implements Query<Integer, ProductDTO> {
       return ResponseEntity.ok(new ProductDTO(productOptional.get()));
     }
 
-    return null;
+    throw new ProductNotFoundException();
   }
 }
