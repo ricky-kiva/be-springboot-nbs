@@ -1,9 +1,12 @@
 package com.rickyslash.nbs.product;
 
+import com.rickyslash.nbs.common.dto.ErrorResponse;
+import com.rickyslash.nbs.common.exceptions.ProductNotFoundException;
 import com.rickyslash.nbs.product.model.Product;
 import com.rickyslash.nbs.product.model.ProductDTO;
 import com.rickyslash.nbs.product.model.command.UpdateProductCmd;
 import com.rickyslash.nbs.product.services.*;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -53,5 +56,12 @@ public class ProductController {
   @DeleteMapping("/product/{id}")
   public ResponseEntity<Void> deleteProduct(@PathVariable Integer id) {
     return deleteProductSvc.execute(id);
+  }
+
+  @ExceptionHandler(ProductNotFoundException.class)
+  @ResponseStatus(HttpStatus.NOT_FOUND)
+  @ResponseBody
+  public ErrorResponse handleProductNotFoundException(ProductNotFoundException ex) {
+    return new ErrorResponse(ex.getMessage());
   }
 }
