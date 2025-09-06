@@ -1,27 +1,29 @@
 package com.rickyslash.nbs.product;
 
+import com.rickyslash.nbs.product.model.Product;
 import com.rickyslash.nbs.product.services.CreateProductSvc;
 import com.rickyslash.nbs.product.services.DeleteProductSvc;
-import com.rickyslash.nbs.product.services.GetProductSvc;
+import com.rickyslash.nbs.product.services.GetProductsSvc;
 import com.rickyslash.nbs.product.services.UpdateProductSvc;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 @RestController
 public class ProductController {
   private final CreateProductSvc createProductSvc;
-  private final GetProductSvc getProductSvc;
+  private final GetProductsSvc getProductsSvc;
   private final UpdateProductSvc updateProductSvc;
   private final DeleteProductSvc deleteProductSvc;
 
   public ProductController(
       CreateProductSvc createProductSvc,
-      GetProductSvc getProductSvc,
+      GetProductsSvc getProductsSvc,
       UpdateProductSvc updateProductSvc,
       DeleteProductSvc deleteProductSvc
   ) {
     this.createProductSvc = createProductSvc;
-    this.getProductSvc = getProductSvc;
+    this.getProductsSvc = getProductsSvc;
     this.updateProductSvc = updateProductSvc;
     this.deleteProductSvc = deleteProductSvc;
   }
@@ -32,8 +34,8 @@ public class ProductController {
   }
 
   @GetMapping
-  public ResponseEntity<String> getProduct() {
-    return getProductSvc.execute(null);
+  public ResponseEntity<List<Product>> getProducts() {
+    return getProductsSvc.execute(null);
   }
 
   @PutMapping
