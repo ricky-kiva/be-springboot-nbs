@@ -5,6 +5,7 @@ import com.rickyslash.nbs.common.exceptions.ProductNotFoundException;
 import com.rickyslash.nbs.product.ProductRepository;
 import com.rickyslash.nbs.product.model.Product;
 import com.rickyslash.nbs.product.model.ProductDTO;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,7 @@ public class GetProductSvc implements Query<Integer, ProductDTO> {
   }
 
   @Override
+  @Cacheable("productCache")
   public ResponseEntity<ProductDTO> execute(Integer input) {
     Optional<Product> productOptional = productRepository.findById(input);
 
