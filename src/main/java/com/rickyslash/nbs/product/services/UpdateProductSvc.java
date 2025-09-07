@@ -6,6 +6,7 @@ import com.rickyslash.nbs.product.ProductRepository;
 import com.rickyslash.nbs.product.model.Product;
 import com.rickyslash.nbs.product.model.ProductDTO;
 import com.rickyslash.nbs.product.model.command.UpdateProductCmd;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,7 @@ public class UpdateProductSvc implements Command<UpdateProductCmd, ProductDTO> {
   }
 
   @Override
+  @CachePut(value = "productCache", key = "#command.getId()")
   public ResponseEntity<ProductDTO> execute(UpdateProductCmd command) {
     Optional<Product> productOptional = productRepository.findById(command.getId());
 
