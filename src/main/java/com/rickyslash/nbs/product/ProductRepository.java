@@ -2,6 +2,7 @@ package com.rickyslash.nbs.product;
 
 import com.rickyslash.nbs.product.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -9,4 +10,7 @@ import java.util.List;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Integer> {
   List<Product> findByNameContaining(String name);
+
+  @Query("SELECT p FROM Product p WHERE p.name LIKE %:keyword% OR p.description LIKE %:keyword%")
+  List<Product> findByNameOrDescriptionContaining(String keyword);
 }
