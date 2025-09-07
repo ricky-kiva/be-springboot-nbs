@@ -1,5 +1,6 @@
 package com.rickyslash.nbs.customer.model;
 
+import com.rickyslash.nbs.customer.model.mappings.Apartment;
 import com.rickyslash.nbs.customer.model.mappings.Home;
 import com.rickyslash.nbs.customer.model.mappings.Property;
 import jakarta.persistence.*;
@@ -29,4 +30,12 @@ public class Customer {
   @OneToMany(cascade = CascadeType.ALL)
   @JoinColumn(name = "customer_id")
   private List<Property> properties;
+
+  @ManyToMany
+  @JoinTable(
+      name = "customer_apartment",
+      joinColumns = @JoinColumn(name = "customer_id"),
+      inverseJoinColumns = @JoinColumn(name = "apartment_id")
+  )
+  private List<Apartment> apartments;
 }

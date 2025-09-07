@@ -1,7 +1,11 @@
 package com.rickyslash.nbs.customer.model.mappings;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.rickyslash.nbs.customer.model.Customer;
 import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.List;
 
 @Entity
 @Table(name = "apartment")
@@ -20,4 +24,8 @@ public class Apartment {
 
   @Column(name = "state")
   private String state;
+
+  @ManyToMany(mappedBy = "apartments")
+  @JsonIgnore
+  private List<Customer> customers;
 }
