@@ -1,5 +1,8 @@
 package com.rickyslash.nbs.customer.model.mappings;
 
+import lombok.Data;
+
+@Data
 public class ApartmentDTO {
   private String street;
   private String city;
