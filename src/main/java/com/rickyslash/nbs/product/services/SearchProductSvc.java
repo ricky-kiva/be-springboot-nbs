@@ -18,8 +18,8 @@ public class SearchProductSvc implements Query<String, List<ProductDTO>> {
   }
 
   @Override
-  public ResponseEntity<List<ProductDTO>> execute(String name) {
-    List<Product> products = productRepository.findByNameContaining(name);
+  public ResponseEntity<List<ProductDTO>> execute(String keyword) {
+    List<Product> products = productRepository.findByNameOrDescriptionContaining(keyword);
     List<ProductDTO> productDTOs = products.stream().map(ProductDTO::new).toList();
 
     return ResponseEntity.ok(productDTOs);
