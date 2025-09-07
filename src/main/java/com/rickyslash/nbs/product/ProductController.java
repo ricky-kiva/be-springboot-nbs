@@ -18,19 +18,22 @@ public class ProductController {
   private final UpdateProductSvc updateProductSvc;
   private final DeleteProductSvc deleteProductSvc;
   private final GetProductSvc getProductSvc;
+  private final SearchProductSvc searchProductSvc;
 
   public ProductController(
       CreateProductSvc createProductSvc,
       GetProductsSvc getProductsSvc,
       UpdateProductSvc updateProductSvc,
       DeleteProductSvc deleteProductSvc,
-      GetProductSvc getProductSvc
+      GetProductSvc getProductSvc,
+      SearchProductSvc searchProductSvc
   ) {
     this.createProductSvc = createProductSvc;
     this.getProductsSvc = getProductsSvc;
     this.updateProductSvc = updateProductSvc;
     this.deleteProductSvc = deleteProductSvc;
     this.getProductSvc = getProductSvc;
+    this.searchProductSvc = searchProductSvc;
   }
 
   @PostMapping("/product")
@@ -46,6 +49,11 @@ public class ProductController {
   @GetMapping("/product/{id}")
   public ResponseEntity<ProductDTO> getProductById(@PathVariable Integer id) {
     return getProductSvc.execute(id);
+  }
+
+  @GetMapping("/product/search")
+  public ResponseEntity<List<ProductDTO>> searchProductByName(@RequestParam String name) {
+    return searchProductSvc.execute(name);
   }
 
   @PutMapping("/product/{id}")
