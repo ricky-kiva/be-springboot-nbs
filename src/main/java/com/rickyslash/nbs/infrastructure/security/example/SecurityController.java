@@ -14,4 +14,14 @@ public class SecurityController {
   public String closed() {
     return "CLOSED";
   }
+
+  @GetMapping("/admin-dashboard")
+  public String adminDashboard() {
+    return "HELLO ADMIN";
+  }
+
+  @GetMapping("/user-dashboard")
+  public String userDashboard() {
+    return "HELLO USER";
+  }
 }
