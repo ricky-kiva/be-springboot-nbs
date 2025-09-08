@@ -1,4 +1,4 @@
-package com.rickyslash.nbs.common.cache;
+package com.rickyslash.nbs.infrastructure.cache;
 
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CacheEvict;
