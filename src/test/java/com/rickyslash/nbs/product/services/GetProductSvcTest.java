@@ -1,9 +1,10 @@
 package com.rickyslash.nbs.product.services;
 
 import com.rickyslash.nbs.common.exceptions.ProductNotFoundException;
-import com.rickyslash.nbs.product.ProductRepository;
-import com.rickyslash.nbs.product.model.Product;
-import com.rickyslash.nbs.product.model.ProductDTO;
+import com.rickyslash.nbs.domain.product.ProductRepository;
+import com.rickyslash.nbs.domain.product.model.Product;
+import com.rickyslash.nbs.domain.product.model.ProductDTO;
+import com.rickyslash.nbs.domain.product.services.GetProductSvc;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
