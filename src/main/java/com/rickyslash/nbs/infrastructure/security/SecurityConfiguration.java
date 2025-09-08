@@ -33,6 +33,7 @@ public class SecurityConfiguration {
         .authorizeHttpRequests(authorize -> {
           authorize.requestMatchers("/login").permitAll();
           authorize.requestMatchers("/register").permitAll();
+          authorize.requestMatchers("/actuator/*").permitAll();
           authorize.anyRequest().authenticated();
         })
         .addFilterBefore(
