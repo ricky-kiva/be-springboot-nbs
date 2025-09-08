@@ -1,6 +1,6 @@
 package com.rickyslash.nbs.common.exceptions;
 
-import com.rickyslash.nbs.common.dto.ErrorResponse;
+import com.rickyslash.nbs.common.exceptions.dto.ErrorResponse;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;

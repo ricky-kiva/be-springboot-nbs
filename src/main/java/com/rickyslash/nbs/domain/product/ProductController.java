@@ -1,6 +1,6 @@
 package com.rickyslash.nbs.domain.product;
 
-import com.rickyslash.nbs.common.dto.ErrorResponse;
+import com.rickyslash.nbs.common.exceptions.dto.ErrorResponse;
 import com.rickyslash.nbs.common.exceptions.ProductNotFoundException;
 import com.rickyslash.nbs.domain.product.model.Product;
 import com.rickyslash.nbs.domain.product.model.ProductDTO;

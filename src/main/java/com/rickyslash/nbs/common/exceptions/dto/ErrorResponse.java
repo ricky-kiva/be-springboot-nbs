@@ -1,4 +1,4 @@
-package com.rickyslash.nbs.common.dto;
+package com.rickyslash.nbs.common.exceptions.dto;
 
 import lombok.Getter;
 
