@@ -26,14 +26,18 @@ public class LoginAppUserSvc implements Query<AppUser, String> {
         user.getPassword()
     );
 
-    Authentication authentication = authenticationManager.authenticate(springSecToken);
+    try {
+      Authentication authentication = authenticationManager.authenticate(springSecToken);
 
-    SecurityContextHolder.getContext().setAuthentication(authentication);
+      SecurityContextHolder.getContext().setAuthentication(authentication);
 
-    User userPrincipal = (User) authentication.getPrincipal();
+      User userPrincipal = (User) authentication.getPrincipal();
 
-    String jwtToken = JwtUtil.generateToken(userPrincipal);
+      String jwtToken = JwtUtil.generateToken(userPrincipal);
 
-    return ResponseEntity.ok(jwtToken);
+      return ResponseEntity.ok(jwtToken);
+    } catch (Exception e) {
+      return ResponseEntity.status(401).body("Invalid username or password");
+    }
   }
 }
